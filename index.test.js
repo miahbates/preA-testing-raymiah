@@ -1,27 +1,42 @@
 test("input text added to list container as list item", () => {
     
     const itemToAdd = document.getElementById("addItem");
-    itemToAdd.value = "test"; // step 2
+    //test value
+    itemToAdd.value = ""; // step 2
     const submitButton = document.querySelector("input[type='submit']");
+    // submit form
     submitButton.click(); // step 3   
     
-    //get Ul element
+    //get UL element
     const todoList = document.getElementById("todoList");
     
-    //get all existing li elements 
-    let children = document.getElementsByTagName("Li");
-
+    //get all lI elementsm if they exist 
+    let children = document.getElementsByTagName("LI");
+    
     // loop over collection with existing LI elements.
     for (let i = 0; i < children.length; i++) {
-        //check if UL contains an LI element
-        if(todoList.contains(children[i])){
-            // compare LI element with first LI element in collection if it exists, if both are true element has been created.
-            equal(children[i], children[0], "LI element created"); // step 4            
+
+        //check if UL contains an LI element. If so result will be true.
+        let listItem = todoList.contains(children[i]);
+        
+        // get any text submitted.
+        let listItemContent = children[i].textContent;
+        
+        // test whether LI element has been created
+        if(listItem){
+
+            equal(listItem, true, "LI element created"); // step 4            
+        }else{
+            
+            notEqual(listItem, false, "LI not element created");
         }
 
-        if(children[i].textContent === itemToAdd.value){
-            equal(children[i].textContent, itemToAdd.value, "text inserted"); // step 5
-        }       
+        // test whether text has been submitted or blank field.
+        if(listItemContent !== "" ){
+            equal(listItemContent, itemToAdd.value, "text inserted"); // step 5
+        }else{
+            notEqual(listItemContent, itemToAdd.value, "text not inserted"); // step 5
+        }      
     }  
 
   });
