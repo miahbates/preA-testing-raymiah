@@ -63,9 +63,6 @@ test("list item has or has not been deleted", () => {
 	// collection length minus 1 to represent item deleted from list.
 	const newlength = completeDeleteItem.length - 1;
 
-	if (currlength === newlength) {
-		equal(currlength, true, "item has been deleted"); // step 4
-	} else {
-		notEqual(currlength, false, "item has not been deleted");
-	}
+	equal(currlength, true, "item has been deleted"); // step 4
+
 });

@@ -24,6 +24,13 @@ const addItemToList = (e) => {
 	itemLabel.setAttribute("for", `listitem-${idx}`);
 	itemLabel.innerHTML = itemToAdd;
 
+	// add task to local storage
+	// if(window.localStorage) {
+	// 	localStorage.setItem("list-Item", itemToAdd);
+	// 	const cat = localStorage.getItem("list-Item");
+	// 	console.log(cat)
+	// }
+
 	checkBox.type = "checkbox";
 	checkBox.setAttribute("id", `listitem-${idx}`);
 	checkBox.setAttribute("class", "list_item");
