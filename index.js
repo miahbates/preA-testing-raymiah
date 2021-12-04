@@ -22,8 +22,12 @@ const addItemToList = (e) => {
  	// delete button
  	const deleteButton = document.createElement("BUTTON");
  	deleteButton.type = "submit";
- 	deleteButton.setAttribute("id", "deleteButton");
+ 	deleteButton.setAttribute("class", "deleteButton");
  	deleteButton.textContent = "X";
+
+  deleteButton.addEventListener("click", event => {
+    itemContainer.remove();
+  });
 
  	// label
  	// id number appended to for attribute value of label so that it matches id value of checkbox

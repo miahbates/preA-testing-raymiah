@@ -1,85 +1,80 @@
 test("input text added to list container as list item", () => {
 
-    const itemToAdd = document.getElementById("addItem");
-    //test value
-    itemToAdd.value = ""; // step 2
-    const submitButton = document.querySelector("input[type='submit']");
-    // submit form
-    submitButton.click(); // step 3
+  const itemToAdd = document.getElementById("addItem");
+ 	//test value
+ 	itemToAdd.value = ""; // step 2
+ 	const submitButton = document.querySelector("input[type='submit']");
+ 	// submit form
+ 	submitButton.click(); // step 3
 
-    //get UL element
-    const todoList = document.getElementById("todoList");
+ 	//get UL element
+ 
+ 	//get all lI elementsm if they exist
+ 	let children = document.getElementsByTagName("LI");
 
-    //get all lI elementsm if they exist
-    let children = document.getElementsByTagName("LI");
+ 	// loop over collection with existing LI elements.
+ 	for (let i = 0; i < children.length; i++) {
 
-    // loop over collection with existing LI elements.
-    for (let i = 0; i < children.length; i++) {
+	  //check if UL contains an LI element. If so result will be true.
+ 		let listItem = todoList.contains(children[i]);
 
-        //check if UL contains an LI element. If so result will be true.
-        let listItem = todoList.contains(children[i]);
+ 		// get any text submitted to label.
+ 		let listItemContent = children[i].firstChild.textContent;
 
-        // get any text submitted to label.
-				let listItemContent = children[i].firstChild.textContent;
+ 		// test whether LI element has been created
+ 		if(listItem){
+			 equal(listItem, true, "LI element created"); // step 4
+   		} else{
+ 				notEqual(listItem, false, "LI not element created");
+ 		}
 
-        // test whether LI element has been created
-        if(listItem){
+ 		// test whether text has been submitted or blank field.
+ 		if(listItemContent !== "" ){
+ 			equal(listItemContent, itemToAdd.value, "text inserted"); // step 5
+ 		} else{
+      notEqual(listItemContent, itemToAdd.value, "text not inserted"); // step 5
+ 		}
+  }
+});
 
-            equal(listItem, true, "LI element created"); // step 4
-        }else{
+test("list item marked as completed and ready for deletion", () => {
+	 // return html collection
+ 	const completeCheck = document.querySelector("#todoList").children;
 
-            notEqual(listItem, false, "LI not element created");
-        }
+  //loop over collection
+ 	for (let i = 0; i < completeCheck.length; i++) {
+  	//console.log(completeCheck[i].childNodes[1]);
 
-        // test whether text has been submitted or blank field.
-        if(listItemContent !== "" ){
-            equal(listItemContent, itemToAdd.value, "text inserted"); // step 5
-        }else{
-            notEqual(listItemContent, itemToAdd.value, "text not inserted"); // step 5
-        }
-    }
+    // find checkbox and add event listener
+    completeCheck[i].childNodes[1].addEventListener("change", function (e) {
+  	//target selected checkbox using event object target property
+ 	  if (e.target.checked == true) {
+		  equal(e.target.checked, true, "checkbox checked"); // step 4
+      } else {
+	 		  notEqual(e.target.checked, false, "checkbox not checked");
+		  }
+    }); // step 3
+ 	}
+});
 
-  });
+test("check if list item has been deleted", () => {
+  // arrange - create varibles/input and pass in what you think you are going to get
+  // delete button
+  const deleteButton = document.querySelector("button[type='submit']");
+  console.log(deleteButton);
+  // find all child elements in to-do-list
+  const listItems = document.querySelector("#todoList").children;
 
-	test("list item marked as completed and ready for deletion", () => {
-		// return html collection
-		const completeCheck = document.querySelector("#todoList").children;
+  // store length of to-do-list in current length
+  const currentLength = listItems.length;
 
-		//loop over collection
-		for (let i = 0; i < completeCheck.length; i++) {
-			//console.log(completeCheck[i].childNodes[1]);
+  // act 
+  // action delete button click
+  deleteButton.click(); 
+  // when click is performed 1 item will be removed from the list, assign this to new length to compare
+  const expected = currentLength - 1;
+  const result = document.querySelector("#todoList").children.length;
 
-			// find checkbox and add event listener
-			completeCheck[i].childNodes[1].addEventListener("change", function (e) {
-				//target selected checkbox using event object target property
-				if (e.target.checked == true) {
-					equal(e.target.checked, true, "checkbox checked"); // step 4
-				} else {
-					notEqual(e.target.checked, false, "checkbox not checked");
-				}
-			}); // step 3
-		}
-	});
-
-	test("list item has or has not been deleted", () => {
-		const completeDelete = document.querySelector("button[type='submit']");
-		// return html collection
-		const completeDeleteItem = document.querySelector("#todoList").children;
-
-		// get collection length before deletion
-		const currlength = completeDeleteItem.length;
-
-		// delete item
-		completeDelete.click(); // step 3
-
-		// collection length minus 1 to represent item deleted from list.
-		const newlength = completeDeleteItem.length - 1;
-
-		console.log(newlength, currlength);
-
-		if (currlength === newlength) {
-			equal(currlength, true, "item has been deleted"); // step 4
-		} else {
-			notEqual(currlength, false, "item has not been deleted");
-		}
-	});
+  // assert - call helper function
+  equal(result, expected, "item has been deleted from list");
+});
