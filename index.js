@@ -1,38 +1,93 @@
 const submitButton = document.getElementById("submit");
+const todoList = document.getElementById("todoList");
 
-submitButton.addEventListener("click", function (e){
-    
-  e.preventDefault();
-  // test value    
-  let itemToAdd = document.getElementById("addItem").value; 
-      
-  const todoList = document.getElementById("todoList");      
-        
-  const itemContainer = document.createElement("LI");
-  
-  // add data target to be the item added on the li
-  itemContainer.dataset.value = itemToAdd;
-    
-  // create input element
-  const checkbox = document.createElement("input");
+// id to add to checkbox and list item.
+let idx = 0;
 
-  checkbox.value = itemToAdd;
+const addItemToList = (e) => {
+	e.preventDefault();
 
-  // assign type to checkbox
-  checkbox.setAttribute("type", "checkbox");
-  // create span element to wrap li and checkbox inside 
-  const span = document.createElement("span");
-  // add input item to span
-  span.innerHTML = itemToAdd;
+	// test value
+	let itemToAdd = document.getElementById("addItem").value;
+	//const todoList = document.getElementById("todoList");
 
-  // append span and checkbox to Li element
-  itemContainer.appendChild(checkbox);
-  itemContainer.appendChild(span);
-  todoList.appendChild(itemContainer); 
+	//LI element
+	const itemContainer = document.createElement("LI");
+	itemContainer.setAttribute("class", `list-item`);
+	//label
+	const itemLabel = document.createElement("LABEL");
+	// checkbox
+	const checkBox = document.createElement("INPUT");
 
-  // set searchbar back to empty 
+	// delete button
+	const deleteButton = document.createElement("BUTTON");
+	deleteButton.type = "submit";
+	deleteButton.setAttribute("id", "deleteButton");
+	deleteButton.textContent = "X";
+
+	// label
+	//id number appended to for attribute value of label so that it matches id value of checkbox
+	itemLabel.setAttribute("for", `listitem-${idx}`);
+
+	// add input text to label
+	itemLabel.innerHTML = itemToAdd;
+
+	// set input type to checkbox
+	checkBox.type = "checkbox";
+
+	//id number appended to id value of checkbox so that it matches for attribute value in label
+	checkBox.setAttribute("id", `listitem-${idx}`);
+
+	// give checkbox a class for later retrieval
+	checkBox.setAttribute("class", "list_item");
+
+	itemContainer.appendChild(itemLabel);
+	itemContainer.appendChild(checkBox);
+	itemContainer.appendChild(deleteButton);
+	todoList.appendChild(itemContainer);
+
+	// increment id for every list item created
+	idx++;
+
+	// set searchbar back to empty
   document.getElementById("addItem").value = "";
-});
+
+	// invoke completed task function
+	completedTasks();
+};
+
+const completedTasks = () => {
+	// complete tasks
+	let completeTask = todoList.children;
+
+	if (completeTask.length === 0) {
+		console.log("no items");
+	}
+
+	for (let i = 0; i < completeTask.length; i++) {
+		// get label
+		let completeLabel = completeTask[i].childNodes[0];
+
+		//get checkbox
+		let completeCheckBox = completeTask[i].childNodes[1];
+
+		completeLabel.addEventListener("click", function (e) {
+			console.log("index : label clicked");
+		});
+
+		completeCheckBox.addEventListener("change", (e) => {
+			if (completeCheckBox.checked == true) {
+				console.log("index : item checked as completed");
+			} else {
+				console.log("index : item not checked as completed");
+			}
+		});
+	}
+};
+
+const deleteTasks = () => {};
+
+submitButton.addEventListener("click", addItemToList);
 
 // grab buttons
 const completeButton = document.querySelector("#complete");
