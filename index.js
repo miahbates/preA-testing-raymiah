@@ -1,10 +1,11 @@
 const submitButton = document.getElementById("submit");
 const todoList = document.getElementById("todoList");
 
-// id to add to checkbox and list item.
+// id to append to checkbox id attribute and label's for attribute to link label to checkbox.
 let idx = 0;
 
 const addItemToList = (e) => {
+
   e.preventDefault();
  	// test value
   let itemToAdd = document.getElementById("addItem").value;
@@ -13,7 +14,7 @@ const addItemToList = (e) => {
  	const itemContainer = document.createElement("LI");
  	itemContainer.setAttribute("class", `list-item`);
 
- 	// label
+	// label
  	const itemLabel = document.createElement("LABEL");
 
  	// checkbox
@@ -61,32 +62,43 @@ const addItemToList = (e) => {
 };
 
 const completedTasks = () => {
- 	// complete tasks
- 	let completeTask = todoList.children;
+	// get all list items.
+	let completeTask = todoList.children;
 
- 	if (completeTask.length === 0) {
- 		console.log("no items");
- 	}
+	// check there are any items in the list
+	if (completeTask.length === 0) {
+		// do nothing or something
+		console.log("no items");
+	}
 
- 	for (let i = 0; i < completeTask.length; i++) {
- 		// get label
- 		let completeLabel = completeTask[i].childNodes[0];
+	// if there are items in the list loop through items
+	for (let i = 0; i < completeTask.length; i++) {
 
- 		//get checkbox
- 		let completeCheckBox = completeTask[i].childNodes[1];
+		// get label for item clicked
+		let completeLabel = completeTask[i].childNodes[0];
 
- 		completeLabel.addEventListener("click", function (e) {
- 			console.log("index : label clicked");
- 		});
+		//get checkbox for item clicked
+		let completeCheckBox = completeTask[i].childNodes[1];
 
- 		completeCheckBox.addEventListener("change", (e) => {
- 			if (completeCheckBox.checked == true) {
-  				console.log("index : item checked as completed");
- 			} else {
- 				console.log("index : item not checked as completed");
- 			}
- 		});
- 	}
+		// if label clicked
+		completeLabel.addEventListener("click", function (e) {
+			// do something
+			console.log("index : label clicked");
+		});
+
+		// check whether change event has been triggered for checkbox
+		completeCheckBox.addEventListener("change", (e) => {
+			//if checkbox checked
+			if (completeCheckBox.checked == true) {
+				// do something
+				console.log("index : item checked as completed");
+				// grab section
+			} else {
+				// do nothing
+				console.log("index : item not checked as completed");
+			}
+		});
+	}
 };
 
 const deleteTasks = () => {};
