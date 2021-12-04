@@ -50,19 +50,26 @@ test("list item marked as completed and ready for deletion", () => {
 });
 
 test("list item has or has not been deleted", () => {
-	const completeDelete = document.querySelector("button[type='submit']");
+
 	// return html collection
 	const completeDeleteItem = document.querySelector("#todoList").children;
 
 	// get collection length before deletion
 	const currlength = completeDeleteItem.length;
 
-	// delete item
-	completeDelete.click(); // step 3
+	for ( i =0; i < completeDeleteItem.length; i++){
+
+		if(completeDeleteItem[i].childNodes[1].checked){
+
+			// add click event to button in list item with checkbox checked
+			completeDeleteItem[i].childNodes[2].click(); // step 3
+
+		}
+
+	}
 
 	// collection length minus 1 to represent item deleted from list.
-	const newlength = completeDeleteItem.length - 1;
+	equal(currlength, currlength - 1, "item has been deleted"); // step 4
 
-	equal(currlength, true, "item has been deleted"); // step 4
 
 });
