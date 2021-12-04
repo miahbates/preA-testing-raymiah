@@ -1,15 +1,15 @@
 const submitButton = document.getElementById("submit");
 const todoList = document.getElementById("todoList");
 
-// id to add to checkbox and list item.
+// id to append to checkbox id attribute and label's for attribute to link label to checkbox.
 let idx = 0;
 
 const addItemToList = (e) => {
+
 	e.preventDefault();
 
 	// test value
 	let itemToAdd = document.getElementById("addItem").value;
-	//const todoList = document.getElementById("todoList");
 
 	//LI element
 	const itemContainer = document.createElement("LI");
@@ -50,39 +50,53 @@ const addItemToList = (e) => {
 	idx++;
 
 	// set searchbar back to empty
-  document.getElementById("addItem").value = "";
+	//commented out for testing
+  //document.getElementById("addItem").value = "";
 
-	// invoke completed task function
+	// invoke completed task function within scope
 	completedTasks();
+
 };
 
 const completedTasks = () => {
-	// complete tasks
+	// get all list items.
 	let completeTask = todoList.children;
 
+	// check there are any items in the list
 	if (completeTask.length === 0) {
+		// do nothing or something
 		console.log("no items");
 	}
 
+	// if there are items in the list loop through items
 	for (let i = 0; i < completeTask.length; i++) {
-		// get label
+
+		// get label for item clicked
 		let completeLabel = completeTask[i].childNodes[0];
 
-		//get checkbox
+		//get checkbox for item clicked
 		let completeCheckBox = completeTask[i].childNodes[1];
 
+		// if label clicked
 		completeLabel.addEventListener("click", function (e) {
+			// do something
 			console.log("index : label clicked");
 		});
 
+		// check whether change event has been triggered for checkbox
 		completeCheckBox.addEventListener("change", (e) => {
+			//if checkbox checked
 			if (completeCheckBox.checked == true) {
+				// do something
 				console.log("index : item checked as completed");
+				// grab section
 			} else {
+				// do nothing
 				console.log("index : item not checked as completed");
 			}
 		});
 	}
+
 };
 
 const deleteTasks = () => {};
