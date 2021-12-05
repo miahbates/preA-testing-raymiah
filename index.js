@@ -15,13 +15,10 @@ const addItemToList = (e) => {
 	const itemLabel = document.createElement("LABEL");
 	const checkBox = document.createElement("INPUT");
 
-  // label
- 	const itemLabel = document.createElement("LABEL");
-	
+
+
 	itemLabel.setAttribute("title", itemToAdd);
 
- 	// checkbox
- 	const checkBox = document.createElement("INPUT");
 
  	// delete button
  	const deleteButton = document.createElement("BUTTON");
@@ -38,7 +35,7 @@ const addItemToList = (e) => {
 	 } else if (!checkBox.checked) {
 		itemContainer.classList.remove('completed');
 	 }
-	
+
 	});
 
 	deleteButton.addEventListener("click", event => {
@@ -64,7 +61,7 @@ const addItemToList = (e) => {
 	checkBox.type = "checkbox";
 	checkBox.setAttribute("id", `listitem-${idx}`);
 	checkBox.setAttribute("class", "list_item");
-	
+
 	idx++;
 
 	completedTasks();
