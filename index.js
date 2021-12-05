@@ -1,101 +1,74 @@
 const submitButton = document.getElementById("submit");
 const todoList = document.getElementById("todoList");
 
-// id to append to checkbox id attribute and label's for attribute to link label to checkbox.
 let idx = 0;
 
 const addItemToList = (e) => {
+	e.preventDefault();
 
-  e.preventDefault();
- 	// test value
-  let itemToAdd = document.getElementById("addItem").value;
+	// test value
+	let itemToAdd = document.getElementById("addItem").value;
+	//const todoList = document.getElementById("todoList");
 
- 	// LI element
- 	const itemContainer = document.createElement("LI");
- 	itemContainer.setAttribute("class", `list-item`);
+	const itemContainer = document.createElement("LI");
+	itemContainer.setAttribute("class", `list-item`);
+	const itemLabel = document.createElement("LABEL");
+	const checkBox = document.createElement("INPUT");
+
+	const deleteButton = document.createElement("BUTTON");
+	deleteButton.type = "submit";
+	deleteButton.setAttribute("id", "deleteButton");
+	deleteButton.textContent = "X";
 
 	// label
- 	const itemLabel = document.createElement("LABEL");
+	itemLabel.setAttribute("for", `listitem-${idx}`);
+	itemLabel.innerHTML = itemToAdd;
 
- 	// checkbox
- 	const checkBox = document.createElement("INPUT");
+	// add task to local storage
+	// if(window.localStorage) {
+	// 	localStorage.setItem("list-Item", itemToAdd);
+	// 	const cat = localStorage.getItem("list-Item");
+	// 	console.log(cat)
+	// }
 
- 	// delete button
- 	const deleteButton = document.createElement("BUTTON");
- 	deleteButton.type = "submit";
- 	deleteButton.setAttribute("class", "deleteButton");
- 	deleteButton.textContent = "X";
+	checkBox.type = "checkbox";
+	checkBox.setAttribute("id", `listitem-${idx}`);
+	checkBox.setAttribute("class", "list_item");
 
-  deleteButton.addEventListener("click", event => {
-    itemContainer.remove();
-  });
+	itemContainer.appendChild(itemLabel);
+	itemContainer.appendChild(checkBox);
+	itemContainer.appendChild(deleteButton);
+	todoList.appendChild(itemContainer);
 
- 	// label
- 	// id number appended to for attribute value of label so that it matches id value of checkbox
- 	itemLabel.setAttribute("for", `listitem-${idx}`);
+	idx++;
 
- 	// add input text to label
- 	itemLabel.innerHTML = itemToAdd;
- 
- 	// set input type to checkbox
- 	checkBox.type = "checkbox";
-
- 	//id number appended to id value of checkbox so that it matches for attribute value in label
- 	checkBox.setAttribute("id", `listitem-${idx}`);
-
- 	// give checkbox a class for later retrieval
- 	checkBox.setAttribute("class", "list_item");
-
- 	itemContainer.appendChild(itemLabel);
- 	itemContainer.appendChild(checkBox);
- 	itemContainer.appendChild(deleteButton);
- 	todoList.appendChild(itemContainer);
-
- 	// increment id for every list item created
- 	idx++;
-
- 	// set searchbar back to empty
-  document.getElementById("addItem").value = "";
-
- 	// invoke completed task function
- 	completedTasks();
+	completedTasks();
 };
 
 const completedTasks = () => {
-	// get all list items.
+	// complete tasks
 	let completeTask = todoList.children;
 
-	// check there are any items in the list
 	if (completeTask.length === 0) {
-		// do nothing or something
 		console.log("no items");
 	}
 
-	// if there are items in the list loop through items
 	for (let i = 0; i < completeTask.length; i++) {
-
-		// get label for item clicked
+		// get label
 		let completeLabel = completeTask[i].childNodes[0];
 
-		//get checkbox for item clicked
+		//get checkbox
 		let completeCheckBox = completeTask[i].childNodes[1];
 
-		// if label clicked
 		completeLabel.addEventListener("click", function (e) {
-			// do something
 			console.log("index : label clicked");
 		});
 
-		// check whether change event has been triggered for checkbox
 		completeCheckBox.addEventListener("change", (e) => {
-			//if checkbox checked
 			if (completeCheckBox.checked == true) {
-				// do something
-				console.log("index : item checked as completed");
-				// grab section
+				console.log("item checked as completed");
 			} else {
-				// do nothing
-				console.log("index : item not checked as completed");
+				console.log("item not checked as completed");
 			}
 		});
 	}
