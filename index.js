@@ -77,13 +77,13 @@ const completedTasks = () => {
 
 	for (let i = 0; i < completeTask.length; i++) {
 		// get label
-		let completeLabel = completeTask[i].childNodes[0];
+		let completeLabel = completeTask[i].childNodes[1];
 
 		//get checkbox
-		let completeCheckBox = completeTask[i].childNodes[1];
+		let completeCheckBox = completeTask[i].childNodes[0];
 
 		completeLabel.addEventListener("click", function (e) {
-			console.log("index : label clicked");
+			console.log("label clicked");
 		});
 
 		completeCheckBox.addEventListener("change", (e) => {
