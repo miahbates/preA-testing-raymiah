@@ -2,7 +2,7 @@ test("input text added to list container as list item", () => {
 
   const itemToAdd = document.getElementById("addItem");
  	//test value
- 	itemToAdd.value = "Raymond"; // step 2
+ 	itemToAdd.value = ""; // step 2
  	const submitButton = document.querySelector("#submit");
  	// submit form
  	submitButton.click(); // step 3
@@ -59,7 +59,7 @@ test("check if list item has been deleted", () => {
 
   // act
   // action delete button click
-  //deleteButton.click();
+  deleteButton.click();
 
   // when click is performed 1 item will be removed from the list, assign this to new length to compare
   const expected = currentLength - 1;
