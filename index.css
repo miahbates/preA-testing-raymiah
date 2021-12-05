@@ -144,6 +144,10 @@ li.list-item > input[type="checkbox"] + label {
 	overflow: hidden;
 }
 
+li.list-item > input[type="checkbox"]:focus + label {
+	box-shadow:var(--box-shaddow);
+}
+
 li.list-item > input[type="checkbox"] + label::before {
 	content:"";
 	position: absolute;
