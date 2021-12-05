@@ -60,7 +60,7 @@ test("list item marked as completed and ready for deletion", () => {
 test("check if list item has been deleted", () => {
   // arrange - create varibles/input and pass in what you think you are going to get
   // delete button
-  const deleteButton = document.querySelector("button[type='submit']");
+  const deleteButton = document.querySelector(".deleteButton");
   // console.log(deleteButton);
   // find all child elements in to-do-list
   const listItems = document.querySelector("#todoList").children;
