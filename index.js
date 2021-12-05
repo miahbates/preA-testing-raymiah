@@ -16,6 +16,8 @@ const addItemToList = (e) => {
 
 	// label
  	const itemLabel = document.createElement("LABEL");
+	
+	itemLabel.setAttribute("title", itemToAdd);
 
  	// checkbox
  	const checkBox = document.createElement("INPUT");
@@ -24,11 +26,23 @@ const addItemToList = (e) => {
  	const deleteButton = document.createElement("BUTTON");
  	deleteButton.type = "submit";
  	deleteButton.setAttribute("class", "deleteButton");
- 	deleteButton.textContent = "X";
 
-  deleteButton.addEventListener("click", event => {
-    itemContainer.remove();
-  });
+	const deleteSpan = document.createElement("span");
+	deleteSpan.classList.add("far", "fa-trash-alt");
+	deleteButton.appendChild(deleteSpan);
+
+	checkBox.addEventListener("change", event => {
+	 if (checkBox.checked) {
+		 itemContainer.classList.add('completed');
+	 } else if (!checkBox.checked) {
+		itemContainer.classList.remove('completed');
+	 }
+	
+	});
+
+	deleteButton.addEventListener("click", event => {
+		itemContainer.remove();
+	});
 
  	// label
  	// id number appended to for attribute value of label so that it matches id value of checkbox
@@ -46,8 +60,8 @@ const addItemToList = (e) => {
  	// give checkbox a class for later retrieval
  	checkBox.setAttribute("class", "list_item");
 
- 	itemContainer.appendChild(itemLabel);
  	itemContainer.appendChild(checkBox);
+ 	itemContainer.appendChild(itemLabel);
  	itemContainer.appendChild(deleteButton);
  	todoList.appendChild(itemContainer);
 

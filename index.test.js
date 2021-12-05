@@ -3,7 +3,7 @@ test("input text added to list container as list item", () => {
   const itemToAdd = document.getElementById("addItem");
  	//test value
  	itemToAdd.value = ""; // step 2
- 	const submitButton = document.querySelector("input[type='submit']");
+ 	const submitButton = document.querySelector("#submit");
  	// submit form
  	submitButton.click(); // step 3
 
@@ -61,7 +61,7 @@ test("check if list item has been deleted", () => {
   // arrange - create varibles/input and pass in what you think you are going to get
   // delete button
   const deleteButton = document.querySelector("button[type='submit']");
-  console.log(deleteButton);
+  // console.log(deleteButton);
   // find all child elements in to-do-list
   const listItems = document.querySelector("#todoList").children;
 
