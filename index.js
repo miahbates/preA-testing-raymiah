@@ -15,10 +15,35 @@ const addItemToList = (e) => {
 	const itemLabel = document.createElement("LABEL");
 	const checkBox = document.createElement("INPUT");
 
-	const deleteButton = document.createElement("BUTTON");
-	deleteButton.type = "submit";
-	deleteButton.setAttribute("id", "deleteButton");
-	deleteButton.textContent = "X";
+  // label
+ 	const itemLabel = document.createElement("LABEL");
+	
+	itemLabel.setAttribute("title", itemToAdd);
+
+ 	// checkbox
+ 	const checkBox = document.createElement("INPUT");
+
+ 	// delete button
+ 	const deleteButton = document.createElement("BUTTON");
+ 	deleteButton.type = "submit";
+ 	deleteButton.setAttribute("class", "deleteButton");
+
+	const deleteSpan = document.createElement("span");
+	deleteSpan.classList.add("far", "fa-trash-alt");
+	deleteButton.appendChild(deleteSpan);
+
+	checkBox.addEventListener("change", event => {
+	 if (checkBox.checked) {
+		 itemContainer.classList.add('completed');
+	 } else if (!checkBox.checked) {
+		itemContainer.classList.remove('completed');
+	 }
+	
+	});
+
+	deleteButton.addEventListener("click", event => {
+		itemContainer.remove();
+	});
 
 	// label
 	itemLabel.setAttribute("for", `listitem-${idx}`);
@@ -31,15 +56,15 @@ const addItemToList = (e) => {
 	// 	console.log(cat)
 	// }
 
+ 	itemContainer.appendChild(checkBox);
+ 	itemContainer.appendChild(itemLabel);
+ 	itemContainer.appendChild(deleteButton);
+ 	todoList.appendChild(itemContainer);
+
 	checkBox.type = "checkbox";
 	checkBox.setAttribute("id", `listitem-${idx}`);
 	checkBox.setAttribute("class", "list_item");
-
-	itemContainer.appendChild(itemLabel);
-	itemContainer.appendChild(checkBox);
-	itemContainer.appendChild(deleteButton);
-	todoList.appendChild(itemContainer);
-
+	
 	idx++;
 
 	completedTasks();

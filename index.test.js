@@ -1,35 +1,40 @@
-test("list item created with text from text field added as list item", () => {
-	const itemToAdd = document.getElementById("addItem");
-	//test with a value
-	itemToAdd.value = "Go to the shops for some milk!"; // step 2
-	const submitButton = document.querySelector("input[type='submit']");
-	// submit form
-	submitButton.click(); // step 3
-	submitButton.click(); // step 3
-	submitButton.click(); // step 3
-	submitButton.click(); // step 3
+test("input text added to list container as list item", () => {
 
-	//get UL element
-	const todoList = document.getElementById("todoList");
+  const itemToAdd = document.getElementById("addItem");
+ 	//test value
+ 	itemToAdd.value = ""; // step 2
+ 	const submitButton = document.querySelector("#submit");
+ 	// submit form
+ 	submitButton.click(); // step 3
 
-	//get all existing LI elements.
-	let children = document.getElementsByTagName("LI");
+ 	//get UL element
+ 
+ 	//get all lI elementsm if they exist
+ 	let children = document.getElementsByTagName("LI");
 
-	// loop over collection with any existing LI elements.
-	for (let i = 0; i < children.length; i++) {
-		//check if UL contains an LI element is true.
-		let listItem = todoList.contains(children[i]);
+ 	// loop over collection with existing LI elements.
+ 	for (let i = 0; i < children.length; i++) {
 
-		// get any text submitted to label.
-		let listItemContent = children[i].firstChild.textContent;
+	  //check if UL contains an LI element. If so result will be true.
+ 		let listItem = todoList.contains(children[i]);
 
-		// test whether LI element has been created is true
-			equal(listItem, true, "LI element created"); // step 4
+ 		// get any text submitted to label.
+ 		let listItemContent = children[i].firstChild.textContent;
 
-		// test whether text field has not been left blank.
-			equal(listItemContent, itemToAdd.value, "text inserted"); // step 5
+ 		// test whether LI element has been created
+ 		if(listItem){
+			 equal(listItem, true, "LI element created"); // step 4
+   		} else{
+ 				notEqual(listItem, false, "LI not element created");
+ 		}
 
-	}
+ 		// test whether text has been submitted or blank field.
+ 		if(listItemContent !== "" ){
+ 			equal(listItemContent, itemToAdd.value, "text inserted"); // step 5
+ 		} else{
+      notEqual(listItemContent, itemToAdd.value, "text not inserted"); // step 5
+ 		}
+  }
 });
 
 test("list item marked as completed and ready for deletion", () => {
@@ -49,27 +54,25 @@ test("list item marked as completed and ready for deletion", () => {
 	}
 });
 
-test("list item has or has not been deleted", () => {
+test("check if list item has been deleted", () => {
+  // arrange - create varibles/input and pass in what you think you are going to get
+  // delete button
+  const deleteButton = document.querySelector(".deleteButton");
+  // console.log(deleteButton);
+  // find all child elements in to-do-list
+  const listItems = document.querySelector("#todoList").children;
 
-	// return html collection
-	const completeDeleteItem = document.querySelector("#todoList").children;
+  // store length of to-do-list in current length
+  const currentLength = listItems.length;
 
-	// get collection length before deletion
-	const currlength = completeDeleteItem.length;
+  // act 
+  // action delete button click
+  deleteButton.click(); 
+  // when click is performed 1 item will be removed from the list, assign this to new length to compare
+  const expected = currentLength - 1;
+  const result = document.querySelector("#todoList").children.length;
 
-	for ( i =0; i < completeDeleteItem.length; i++){
-
-		if(completeDeleteItem[i].childNodes[1].checked){
-
-			// add click event to button in list item with checkbox checked
-			completeDeleteItem[i].childNodes[2].click(); // step 3
-
-		}
-
-	}
-
-	// collection length minus 1 to represent item deleted from list.
-	equal(currlength, currlength - 1, "item has been deleted"); // step 4
-
+  // assert - call helper function
+  equal(result, expected, "item has been deleted from list");
 
 });
