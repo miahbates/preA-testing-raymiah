@@ -1,31 +1,81 @@
  /* mobile first  */
+
+ html {
+ --color-one: #D9DBE8;
+ --color-two: #a06cd5;
+ --color-three: #fafafa;
+ --color-four: #6247aa;
+ --box-shaddow: rgba(108, 112, 116, 0.438) 0px 8px 24px;
+ background-color: var(--color-one);
+ font-family: "Lora", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ font-size: 62.5%;
+ margin: 0;
+ padding: 0;
+ }
+
+ body {
+	 font-size: 1.6rem;
+ }
+
  #wrapper {
 	display: block;
-	margin: auto;
-	width: 50%;
+	width: 80vw;
+	background-color: var(--color-three);
+	box-shadow: var(--box-shaddow);
+	margin: 0 auto;
+	padding: 10px;
 }
 
 h1 {
 	text-align: center;
+	color: var(--color-three);
+	background-color: var(--color-two);
+	padding: 10px;
+	box-shadow: var(--box-shaddow);
+	width: 80vw;
+	margin: 20px auto;
+	font-size: 2.5rem;
 }
 
 form {
 	display: flex;
-	height: 100px;
 	align-items: center;
 }
 
 form input[type="text"] {
 	line-height: 35px;
-	width: 70%;
+	width: 70vw;
 	margin-right: 0.2em;
 	font-size: 1.2em;
 }
 
-form input[type="submit"] {
+.fa-plus {
+	color: var(--color-three);
+	font-size: 3rem;
+}
+
+#submit {
 	line-height: 40px;
 	height: 40px;
-	width: 30%;
+	width: 40px;
+	font-size: 3rem;
+	background-color: var(--color-two);
+	border-radius: 50%;
+	border:none;
+	transition: all 0.5s ease-in-out;
+	margin: 5px;
+}
+
+#submit:hover {
+	transform: scale(1.1); 
+  background-color: var(--color-one);
+  color: var(--color-five);
+  cursor: pointer;
+	box-shadow:var(--box-shaddow);
+}
+
+.fa-plus:hover {
+	color: var(--color-four);
 }
 
 ul#todoList {
@@ -38,7 +88,7 @@ li.list-item {
 	display: flex;
 	margin-bottom: 0.5em;
 	height: auto;
-	border: 1px solid #000;
+	font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 li.list-item > label {
@@ -73,5 +123,8 @@ li.list-item > label:hover {
 
  /* Tablet and above */
 @media screen and (min-width: 768px) {
+	h1 {
+		width: 70vw;
+	}
 }
 
