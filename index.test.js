@@ -38,23 +38,20 @@ test("input text added to list container as list item", () => {
 });
 
 test("list item marked as completed and ready for deletion", () => {
-	 // return html collection
- 	const completeCheck = document.querySelector("#todoList").children;
+	// return html collection
+	const completeCheck = document.querySelector("#todoList").children;
 
-  //loop over collection
- 	for (let i = 0; i < completeCheck.length; i++) {
-  	//console.log(completeCheck[i].childNodes[1]);
+	//loop over collection
+	for (let i = 0; i < completeCheck.length; i++) {
 
-    // find checkbox and add event listener
-    completeCheck[i].childNodes[1].addEventListener("change", function (e) {
-  	//target selected checkbox using event object target property
- 	  if (e.target.checked == true) {
-		  equal(e.target.checked, true, "checkbox checked"); // step 4
-      } else {
-	 		  notEqual(e.target.checked, false, "checkbox not checked");
-		  }
-    }); // step 3
- 	}
+		// find checkbox and add event listener
+		completeCheck[i].childNodes[1].addEventListener("change", function (e) {
+
+			//target selected checkbox using event object target property
+				equal(e.target.checked, true, "checkbox checked"); // step 4
+
+		}); // step 3
+	}
 });
 
 test("check if list item has been deleted", () => {
@@ -77,4 +74,5 @@ test("check if list item has been deleted", () => {
 
   // assert - call helper function
   equal(result, expected, "item has been deleted from list");
+
 });
