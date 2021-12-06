@@ -6,7 +6,7 @@
  --color-three: #fafafa;
  --color-four: #6247aa;
  --color-five: #d2b7e5;
- --color-six: #808080;
+ --color-six: #3f3f3f;
  --box-shaddow: rgba(108, 112, 116, 0.438) 0px 8px 24px;
  background-color: var(--color-one);
  font-family: "Lora", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -136,7 +136,7 @@ li.list-item > input[type="checkbox"] + label {
   position: relative;
 	cursor: pointer;
 	display: inline-block;
-	color: grey;
+	color:var(--color-six);
 	line-height: 10px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
