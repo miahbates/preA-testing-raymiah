@@ -16,7 +16,6 @@ const addItemToList = (e) => {
 
 	// label
  	const itemLabel = document.createElement("LABEL");
-	
 	itemLabel.setAttribute("title", itemToAdd);
 
  	// checkbox
