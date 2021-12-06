@@ -4,6 +4,7 @@ const todoList = document.getElementById("todoList");
 let idx = 0;
 
 const addItemToList = (e) => {
+	console.log(e);
 	e.preventDefault();
 
 	// test value
@@ -16,7 +17,6 @@ const addItemToList = (e) => {
 	const checkBox = document.createElement("INPUT");
 
   // label
- 	const itemLabel = document.createElement("LABEL");
 	itemLabel.setAttribute("title", itemToAdd);
 
 
