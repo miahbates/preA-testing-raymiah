@@ -7,8 +7,6 @@ test("input text added to list container as list item", () => {
  	// submit form
  	submitButton.click(); // step 3
 
- 	//get UL element
- 
  	//get all lI elementsm if they exist
  	let children = document.getElementsByTagName("LI");
 
@@ -22,18 +20,12 @@ test("input text added to list container as list item", () => {
  		let listItemContent = children[i].firstChild.textContent;
 
  		// test whether LI element has been created
- 		if(listItem){
 			 equal(listItem, true, "LI element created"); // step 4
-   		} else{
- 				notEqual(listItem, false, "LI not element created");
- 		}
+
 
  		// test whether text has been submitted or blank field.
- 		if(listItemContent !== "" ){
  			equal(listItemContent, itemToAdd.value, "text inserted"); // step 5
- 		} else{
-      notEqual(listItemContent, itemToAdd.value, "text not inserted"); // step 5
- 		}
+
   }
 });
 
@@ -45,7 +37,7 @@ test("list item marked as completed and ready for deletion", () => {
 	for (let i = 0; i < completeCheck.length; i++) {
 
 		// find checkbox and add event listener
-		completeCheck[i].childNodes[1].addEventListener("change", function (e) {
+		completeCheck[i].childNodes[0].addEventListener("change", function (e) {
 
 			//target selected checkbox using event object target property
 				equal(e.target.checked, true, "checkbox checked"); // step 4
@@ -65,9 +57,10 @@ test("check if list item has been deleted", () => {
   // store length of to-do-list in current length
   const currentLength = listItems.length;
 
-  // act 
+  // act
   // action delete button click
-  deleteButton.click(); 
+  deleteButton.click();
+
   // when click is performed 1 item will be removed from the list, assign this to new length to compare
   const expected = currentLength - 1;
   const result = document.querySelector("#todoList").children.length;

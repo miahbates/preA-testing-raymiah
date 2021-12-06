@@ -19,8 +19,6 @@ const addItemToList = (e) => {
  	const itemLabel = document.createElement("LABEL");
 	itemLabel.setAttribute("title", itemToAdd);
 
- 	// checkbox
- 	const checkBox = document.createElement("INPUT");
 
  	// delete button
  	const deleteButton = document.createElement("BUTTON");
@@ -37,7 +35,7 @@ const addItemToList = (e) => {
 	 } else if (!checkBox.checked) {
 		itemContainer.classList.remove('completed');
 	 }
-	
+
 	});
 
 	deleteButton.addEventListener("click", event => {
@@ -63,7 +61,7 @@ const addItemToList = (e) => {
 	checkBox.type = "checkbox";
 	checkBox.setAttribute("id", `listitem-${idx}`);
 	checkBox.setAttribute("class", "list_item");
-	
+
 	idx++;
 
 	completedTasks();
@@ -79,13 +77,13 @@ const completedTasks = () => {
 
 	for (let i = 0; i < completeTask.length; i++) {
 		// get label
-		let completeLabel = completeTask[i].childNodes[0];
+		let completeLabel = completeTask[i].childNodes[1];
 
 		//get checkbox
-		let completeCheckBox = completeTask[i].childNodes[1];
+		let completeCheckBox = completeTask[i].childNodes[0];
 
 		completeLabel.addEventListener("click", function (e) {
-			console.log("index : label clicked");
+			console.log("label clicked");
 		});
 
 		completeCheckBox.addEventListener("change", (e) => {
