@@ -34,7 +34,7 @@ h1 {
 	background-color: var(--color-two);
 	padding: 10px;
 	box-shadow: var(--box-shaddow);
-	width: 80vw;
+	width: 96%;
 	margin: 20px auto;
 	font-size: 3rem;
 }
@@ -74,7 +74,7 @@ form input[type="text"] {
 }
 
 #submit:hover {
-	transform: scale(1.1); 
+	transform: scale(1.1);
   background-color: var(--color-one);
   color: var(--color-five);
   cursor: pointer;
@@ -185,7 +185,7 @@ li.list-item > label:hover {
  /* Tablet and above */
 @media screen and (min-width: 768px) {
 	h1 {
-		width: 60vw;
+		width: 97%;
 		font-size: 4.5rem;
 	}
 

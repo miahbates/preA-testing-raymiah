@@ -11,6 +11,13 @@ const addItemToList = (e) => {
 	let itemToAdd = document.getElementById("addItem").value;
 	//const todoList = document.getElementById("todoList");
 
+	//add task to local storage
+	if(window.localStorage) {
+		localStorage.setItem("list-Item", itemToAdd);
+		const cat = localStorage.getItem("list-Item");
+		console.log(cat)
+	}
+
 	const itemContainer = document.createElement("LI");
 	itemContainer.setAttribute("class", `list-item`);
 	const itemLabel = document.createElement("LABEL");
@@ -24,6 +31,7 @@ const addItemToList = (e) => {
  	const deleteButton = document.createElement("BUTTON");
  	deleteButton.type = "submit";
  	deleteButton.setAttribute("class", "deleteButton");
+	deleteButton.setAttribute("aria-label", "delete task");
 
 	const deleteSpan = document.createElement("span");
 	deleteSpan.classList.add("far", "fa-trash-alt");
@@ -46,12 +54,6 @@ const addItemToList = (e) => {
 	itemLabel.setAttribute("for", `listitem-${idx}`);
 	itemLabel.innerHTML = itemToAdd;
 
-	// add task to local storage
-	// if(window.localStorage) {
-	// 	localStorage.setItem("list-Item", itemToAdd);
-	// 	const cat = localStorage.getItem("list-Item");
-	// 	console.log(cat)
-	// }
 
  	itemContainer.appendChild(checkBox);
  	itemContainer.appendChild(itemLabel);
