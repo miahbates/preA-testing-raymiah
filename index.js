@@ -4,32 +4,34 @@ const todoList = document.getElementById("todoList");
 let idx = 0;
 
 const addItemToList = (e) => {
+  console.log(e);
+  e.preventDefault();
+  
+  // get input value
+  let itemToAdd = document.getElementById("addItem").value;
+  //const todoList = document.getElementById("todoList");
+  
+  // add task to local storage
+  if(window.localStorage) {
+    localStorage.setItem("list-Item", itemToAdd);
+	  const cat = localStorage.getItem("list-Item");
+	  console.log(cat);
+  }
 
-	e.preventDefault();
-
-	// test value
-	let itemToAdd = document.getElementById("addItem").value;
-	//const todoList = document.getElementById("todoList");
-
-	//add task to local storage
-	if(window.localStorage) {
-		localStorage.setItem("list-Item", itemToAdd);
-		const cat = localStorage.getItem("list-Item");
-		console.log(cat)
-	}
-
-	const itemContainer = document.createElement("LI");
-	itemContainer.setAttribute("class", `list-item`);
-	const itemLabel = document.createElement("LABEL");
-	const checkBox = document.createElement("INPUT");
-
-
-  // label
+  // create li, label and checkbox
+  const itemContainer = document.createElement("LI");
+  itemContainer.setAttribute("class", `list-item`);
+  const itemLabel = document.createElement("LABEL");
+  const checkBox = document.createElement("INPUT");
+  
+  // label - give label matching title of item to add 
   itemLabel.setAttribute("title", itemToAdd);
   
+  // grab error message and hide it
   const errorMessage = document.querySelector(".error");
   errorMessage.classList.add('hidden');
   
+  // display message only if input input is empty string
   if (itemToAdd === '') {
     errorMessage.classList.remove('hidden');
     return;
@@ -41,21 +43,24 @@ const addItemToList = (e) => {
  	deleteButton.setAttribute("class", "deleteButton");
   deleteButton.setAttribute("aria-label", "delete task");
 
+  // add logo to delete button using span
   const deleteSpan = document.createElement("span");
   deleteSpan.classList.add("far", "fa-trash-alt");
   deleteButton.appendChild(deleteSpan);
 
+  // see if checkbox is checked
   checkBox.addEventListener("change", event => {
 	 if (checkBox.checked) {
 		 itemContainer.classList.add('completed');
 	 } else if (!checkBox.checked) {
       itemContainer.classList.remove('completed');
-	 }
-
+	 }  
   });
 
+  // click delete button to remove item container
   deleteButton.addEventListener("click", event => {
-	 itemContainer.remove();
+	  itemContainer.remove();
+   
   });
 
   // label
@@ -73,6 +78,7 @@ const addItemToList = (e) => {
 
   idx++;
   completedTasks();
+  
   document.getElementById("addItem").value = '';
 
 
@@ -142,6 +148,8 @@ const moveItem = () => {
 				//console.log(e)
 				console.log(completedListIt);
 				// create new list element
+        const completedHeader = document.querySelector("H2");
+        completedHeader.classList.remove('hidden');
 				const completedListItem = document.createElement("LI");
 				completedListItem.setAttribute("class", `list-item`);
 				// add completed check box
