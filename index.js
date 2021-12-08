@@ -5,26 +5,34 @@ let idx = 0;
 
 const addItemToList = (e) => {
   console.log(e);
-	 e.preventDefault();
-
+  e.preventDefault();
+  
   // test value
   let itemToAdd = document.getElementById("addItem").value;
   //const todoList = document.getElementById("todoList");
-
+  
   //add task to local storage
   if(window.localStorage) {
     localStorage.setItem("list-Item", itemToAdd);
 	  const cat = localStorage.getItem("list-Item");
 	  console.log(cat);
   }
-
+  
   const itemContainer = document.createElement("LI");
   itemContainer.setAttribute("class", `list-item`);
   const itemLabel = document.createElement("LABEL");
   const checkBox = document.createElement("INPUT");
-
+  
   // label
   itemLabel.setAttribute("title", itemToAdd);
+  
+  const errorMessage = document.querySelector(".error");
+  errorMessage.classList.add('hidden');
+  
+  if (itemToAdd === '') {
+    errorMessage.classList.remove('hidden');
+    return;
+  }
 
  	// delete button
  	const deleteButton = document.createElement("BUTTON");

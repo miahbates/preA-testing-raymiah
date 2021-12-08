@@ -22,7 +22,6 @@ test("input text added to list container as list item", () => {
  		// test whether LI element has been created
 			 equal(listItem, true, "LI element created"); // step 4
 
-
  		// test whether text has been submitted or blank field.
  			equal(listItemContent, itemToAdd.value, "text inserted"); // step 5
 
@@ -30,20 +29,20 @@ test("input text added to list container as list item", () => {
 });
 
 test("list item marked as completed and ready for deletion", () => {
-	// return html collection
-	const completeCheck = document.querySelector("#todoList").children;
+  // return html collection
+  const completeCheck = document.querySelector("#todoList").children;
 
-	//loop over collection
-	for (let i = 0; i < completeCheck.length; i++) {
+  //loop over collection
+  for (let i = 0; i < completeCheck.length; i++) {
 
-		// find checkbox and add event listener
-		completeCheck[i].childNodes[0].addEventListener("change", function (e) {
+    // find checkbox and add event listener
+    completeCheck[i].childNodes[0].addEventListener("change", function (e) {
 
-			//target selected checkbox using event object target property
-				equal(e.target.checked, true, "checkbox checked"); // step 4
+      //target selected checkbox using event object target property
+      equal(e.target.checked, true, "checkbox checked"); // step 4
 
-		}); // step 3
-	}
+    }); // step 3
+  }
 });
 
 test("check if list item has been deleted", () => {
