@@ -23,48 +23,58 @@ const addItemToList = (e) => {
 	const itemLabel = document.createElement("LABEL");
 	const checkBox = document.createElement("INPUT");
 
-  // label
-	itemLabel.setAttribute("title", itemToAdd);
 
+  // label
+  itemLabel.setAttribute("title", itemToAdd);
+  
+  const errorMessage = document.querySelector(".error");
+  errorMessage.classList.add('hidden');
+  
+  if (itemToAdd === '') {
+    errorMessage.classList.remove('hidden');
+    return;
+  }
 
  	// delete button
  	const deleteButton = document.createElement("BUTTON");
  	deleteButton.type = "submit";
  	deleteButton.setAttribute("class", "deleteButton");
-	deleteButton.setAttribute("aria-label", "delete task");
+  deleteButton.setAttribute("aria-label", "delete task");
 
-	const deleteSpan = document.createElement("span");
-	deleteSpan.classList.add("far", "fa-trash-alt");
-	deleteButton.appendChild(deleteSpan);
+  const deleteSpan = document.createElement("span");
+  deleteSpan.classList.add("far", "fa-trash-alt");
+  deleteButton.appendChild(deleteSpan);
 
-	checkBox.addEventListener("change", event => {
+  checkBox.addEventListener("change", event => {
 	 if (checkBox.checked) {
 		 itemContainer.classList.add('completed');
 	 } else if (!checkBox.checked) {
-		itemContainer.classList.remove('completed');
+      itemContainer.classList.remove('completed');
 	 }
 
-	});
+  });
 
-	deleteButton.addEventListener("click", event => {
-		itemContainer.remove();
-	});
+  deleteButton.addEventListener("click", event => {
+	 itemContainer.remove();
+  });
 
-	// label
-	itemLabel.setAttribute("for", `listitem-${idx}`);
-	itemLabel.innerHTML = itemToAdd;
-
+  // label
+  itemLabel.setAttribute("for", `listitem-${idx}`);
+  itemLabel.innerHTML = itemToAdd;
 
  	itemContainer.appendChild(checkBox);
  	itemContainer.appendChild(itemLabel);
  	itemContainer.appendChild(deleteButton);
  	todoList.appendChild(itemContainer);
 
-	checkBox.type = "checkbox";
-	checkBox.setAttribute("id", `listitem-${idx}`);
-	checkBox.setAttribute("class", "list_item");
+  checkBox.type = "checkbox";
+  checkBox.setAttribute("id", `listitem-${idx}`);
+  checkBox.setAttribute("class", "list_item");
 
-	idx++;
+  idx++;
+  completedTasks();
+  document.getElementById("addItem").value = '';
+
 
 	completedTasks();
 
@@ -73,32 +83,32 @@ const addItemToList = (e) => {
 };
 
 const completedTasks = () => {
-	// complete tasks
-	let completeTask = todoList.children;
+  // complete tasks
+  let completeTask = todoList.children;
 
-	if (completeTask.length === 0) {
-		console.log("no items");
-	}
+  if (completeTask.length === 0) {
+    console.log("no items");
+  }
 
-	for (let i = 0; i < completeTask.length; i++) {
-		// get label
-		let completeLabel = completeTask[i].childNodes[1];
+  for (let i = 0; i < completeTask.length; i++) {
+    // get label
+    let completeLabel = completeTask[i].childNodes[1];
 
-		//get checkbox
-		let completeCheckBox = completeTask[i].childNodes[0];
+    //get checkbox
+    let completeCheckBox = completeTask[i].childNodes[0];
 
-		completeLabel.addEventListener("click", function (e) {
-			console.log("label clicked");
-		});
+    completeLabel.addEventListener("click", function (e) { 
+      console.log("label clicked");
+    });
 
-		completeCheckBox.addEventListener("change", (e) => {
-			if (completeCheckBox.checked == true) {
-				console.log("item checked as completed");
-			} else {
-				console.log("item not checked as completed");
-			}
-		});
-	}
+    completeCheckBox.addEventListener("change", (e) => {
+      if (completeCheckBox.checked == true) {
+        console.log("item checked as completed");
+      } else {
+        console.log("item not checked as completed"); 
+      }
+    });
+  }
 };
 
 const moveItem = () => {
