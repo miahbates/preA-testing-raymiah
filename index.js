@@ -72,6 +72,8 @@ const addItemToList = (e) => {
 
   idx++;
   completedTasks();
+  document.getElementById("addItem").value = '';
+
 };
 
 const completedTasks = () => {
