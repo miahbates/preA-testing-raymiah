@@ -4,7 +4,6 @@ const todoList = document.getElementById("todoList");
 let idx = 0;
 
 const addItemToList = (e) => {
-<<<<<<< HEAD
   console.log(e);
   e.preventDefault();
   
@@ -26,9 +25,6 @@ const addItemToList = (e) => {
   const checkBox = document.createElement("INPUT");
   
   // label - give label matching title of item to add 
-
-
-  // label
   itemLabel.setAttribute("title", itemToAdd);
   
   // grab error message and hide it
@@ -60,10 +56,11 @@ const addItemToList = (e) => {
       itemContainer.classList.remove('completed');
 	 }  
   });
-  
+
   // click delete button to remove item container
   deleteButton.addEventListener("click", event => {
-	 itemContainer.remove();
+	  itemContainer.remove();
+   
   });
 
   // label
@@ -151,6 +148,8 @@ const moveItem = () => {
 				//console.log(e)
 				console.log(completedListIt);
 				// create new list element
+        const completedHeader = document.querySelector("H2");
+        completedHeader.classList.remove('hidden');
 				const completedListItem = document.createElement("LI");
 				completedListItem.setAttribute("class", `list-item`);
 				// add completed check box
