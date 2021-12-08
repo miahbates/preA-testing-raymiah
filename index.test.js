@@ -2,10 +2,11 @@ test("input text added to list container as list item", () => {
 
   const itemToAdd = document.getElementById("addItem");
  	//test value
- 	itemToAdd.value = ""; // step 2
+	 let name = 'abc';
+ 	itemToAdd.value = name; // step 2
  	const submitButton = document.querySelector("#submit");
  	// submit form
- 	//submitButton.click(); // step 3
+ 	submitButton.click(); // step 3
 
  	//get all lI elementsm if they exist
  	let children = document.getElementsByTagName("LI");
@@ -17,33 +18,32 @@ test("input text added to list container as list item", () => {
  		let listItem = todoList.contains(children[i]);
 
  		// get any text submitted to label.
- 		let listItemContent = children[i].firstChild.textContent;
+ 		let listItemContent = children[i].querySelector('label').textContent;
+		 console.log('fghjk', children[i]);
 
  		// test whether LI element has been created
 			 equal(listItem, true, "LI element created"); // step 4
 
-
  		// test whether text has been submitted or blank field.
- 			equal(listItemContent, itemToAdd.value, "text inserted"); // step 5
-
+ 			equal(listItemContent, name, "text inserted"); // step 5
   }
 });
 
 test("list item marked as completed and ready for deletion", () => {
-	// return html collection
-	const completeCheck = document.querySelector("#todoList").children;
+  // return html collection
+  const completeCheck = document.querySelector("#todoList").children;
 
-	//loop over collection
-	for (let i = 0; i < completeCheck.length; i++) {
+  //loop over collection
+  for (let i = 0; i < completeCheck.length; i++) {
 
-		// find checkbox and add event listener
-		completeCheck[i].childNodes[0].addEventListener("change", function (e) {
+    // find checkbox and add event listener
+    completeCheck[i].childNodes[0].addEventListener("change", function (e) {
 
-			//target selected checkbox using event object target property
-				equal(e.target.checked, true, "checkbox checked"); // step 4
+      //target selected checkbox using event object target property
+      equal(e.target.checked, true, "checkbox checked"); // step 4
 
-		}); // step 3
-	}
+    }); // step 3
+  }
 });
 
 test("check if list item has been deleted", () => {
@@ -59,7 +59,7 @@ test("check if list item has been deleted", () => {
 
   // act
   // action delete button click
-  //deleteButton.click();
+  deleteButton.click();
 
   // when click is performed 1 item will be removed from the list, assign this to new length to compare
   const expected = currentLength - 1;
