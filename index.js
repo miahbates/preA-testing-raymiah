@@ -4,98 +4,95 @@ const todoList = document.getElementById("todoList");
 let idx = 0;
 
 const addItemToList = (e) => {
-	console.log(e);
-	e.preventDefault();
+  console.log(e);
+	 e.preventDefault();
 
-	// test value
-	let itemToAdd = document.getElementById("addItem").value;
-	//const todoList = document.getElementById("todoList");
+  // test value
+  let itemToAdd = document.getElementById("addItem").value;
+  //const todoList = document.getElementById("todoList");
 
-	//add task to local storage
-	if(window.localStorage) {
-		localStorage.setItem("list-Item", itemToAdd);
-		const cat = localStorage.getItem("list-Item");
-		console.log(cat)
-	}
+  //add task to local storage
+  if(window.localStorage) {
+    localStorage.setItem("list-Item", itemToAdd);
+	  const cat = localStorage.getItem("list-Item");
+	  console.log(cat);
+  }
 
-	const itemContainer = document.createElement("LI");
-	itemContainer.setAttribute("class", `list-item`);
-	const itemLabel = document.createElement("LABEL");
-	const checkBox = document.createElement("INPUT");
+  const itemContainer = document.createElement("LI");
+  itemContainer.setAttribute("class", `list-item`);
+  const itemLabel = document.createElement("LABEL");
+  const checkBox = document.createElement("INPUT");
 
   // label
-	itemLabel.setAttribute("title", itemToAdd);
-
+  itemLabel.setAttribute("title", itemToAdd);
 
  	// delete button
  	const deleteButton = document.createElement("BUTTON");
  	deleteButton.type = "submit";
  	deleteButton.setAttribute("class", "deleteButton");
-	deleteButton.setAttribute("aria-label", "delete task");
+  deleteButton.setAttribute("aria-label", "delete task");
 
-	const deleteSpan = document.createElement("span");
-	deleteSpan.classList.add("far", "fa-trash-alt");
-	deleteButton.appendChild(deleteSpan);
+  const deleteSpan = document.createElement("span");
+  deleteSpan.classList.add("far", "fa-trash-alt");
+  deleteButton.appendChild(deleteSpan);
 
-	checkBox.addEventListener("change", event => {
+  checkBox.addEventListener("change", event => {
 	 if (checkBox.checked) {
 		 itemContainer.classList.add('completed');
 	 } else if (!checkBox.checked) {
-		itemContainer.classList.remove('completed');
+      itemContainer.classList.remove('completed');
 	 }
 
-	});
+  });
 
-	deleteButton.addEventListener("click", event => {
-		itemContainer.remove();
-	});
+  deleteButton.addEventListener("click", event => {
+	 itemContainer.remove();
+  });
 
-	// label
-	itemLabel.setAttribute("for", `listitem-${idx}`);
-	itemLabel.innerHTML = itemToAdd;
-
+  // label
+  itemLabel.setAttribute("for", `listitem-${idx}`);
+  itemLabel.innerHTML = itemToAdd;
 
  	itemContainer.appendChild(checkBox);
  	itemContainer.appendChild(itemLabel);
  	itemContainer.appendChild(deleteButton);
  	todoList.appendChild(itemContainer);
 
-	checkBox.type = "checkbox";
-	checkBox.setAttribute("id", `listitem-${idx}`);
-	checkBox.setAttribute("class", "list_item");
+  checkBox.type = "checkbox";
+  checkBox.setAttribute("id", `listitem-${idx}`);
+  checkBox.setAttribute("class", "list_item");
 
-	idx++;
-
-	completedTasks();
+  idx++;
+  completedTasks();
 };
 
 const completedTasks = () => {
-	// complete tasks
-	let completeTask = todoList.children;
+  // complete tasks
+  let completeTask = todoList.children;
 
-	if (completeTask.length === 0) {
-		console.log("no items");
-	}
+  if (completeTask.length === 0) {
+    console.log("no items");
+  }
 
-	for (let i = 0; i < completeTask.length; i++) {
-		// get label
-		let completeLabel = completeTask[i].childNodes[1];
+  for (let i = 0; i < completeTask.length; i++) {
+    // get label
+    let completeLabel = completeTask[i].childNodes[1];
 
-		//get checkbox
-		let completeCheckBox = completeTask[i].childNodes[0];
+    //get checkbox
+    let completeCheckBox = completeTask[i].childNodes[0];
 
-		completeLabel.addEventListener("click", function (e) {
-			console.log("label clicked");
-		});
+    completeLabel.addEventListener("click", function (e) { 
+      console.log("label clicked");
+    });
 
-		completeCheckBox.addEventListener("change", (e) => {
-			if (completeCheckBox.checked == true) {
-				console.log("item checked as completed");
-			} else {
-				console.log("item not checked as completed");
-			}
-		});
-	}
+    completeCheckBox.addEventListener("change", (e) => {
+      if (completeCheckBox.checked == true) {
+        console.log("item checked as completed");
+      } else {
+        console.log("item not checked as completed"); 
+      }
+    });
+  }
 };
 
 const deleteTasks = () => {};
