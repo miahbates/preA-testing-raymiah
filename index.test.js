@@ -5,10 +5,7 @@ test("input text added to list container as list item", () => {
  	itemToAdd.value = "gfdgfdgf"; // step 2
  	const submitButton = document.querySelector("#submit");
  	// submit form
- 	submitButton.click(); // step 3
-	submitButton.click(); // step 3
-	submitButton.click(); // step 3
-	submitButton.click(); // step 3
+ 	//submitButton.click(); // step 3
 
  	//get all lI elementsm if they exist
  	let children = document.getElementsByTagName("LI");
