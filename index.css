@@ -112,7 +112,7 @@ ul#complete{
 
 }
 
-ul#complete > .completed label {
+ul#complete li.list-item .completed label {
 	text-decoration: line-through;
 }
 
