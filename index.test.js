@@ -3,7 +3,7 @@ test("input text added to list container as list item", () => {
   const itemToAdd = document.getElementById("addItem");
  	//test value
 
-	let name = 'abc';
+  let name = 'abc';
 
  	itemToAdd.value = name; // step 2
  	const submitButton = document.querySelector("#submit");

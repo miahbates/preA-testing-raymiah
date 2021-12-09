@@ -1,5 +1,6 @@
 const submitButton = document.getElementById("submit");
 const todoList = document.getElementById("todoList");
+const completedTasksList = document.querySelector("#complete");
 
 let idx = 0;
 
@@ -47,6 +48,33 @@ const addItemToList = (e) => {
  	deleteButton.type = "button";
  	deleteButton.setAttribute("class", "deleteButton");
   deleteButton.setAttribute("aria-label", "delete task");
+
+  // add click event listener to delete button
+  console.log('Creating delete handler for', deleteButton);
+  deleteButton.addEventListener("click",(e)=>{
+    e.preventDefault();
+    // check if checkbox checked
+    if(checkbox.checked){
+      //console.log(e)
+
+      // create new list element
+      const completedHeader = document.querySelector("H2");
+      completedHeader.classList.remove('hidden');
+      const completedListItem = document.createElement("LI");
+      completedListItem.setAttribute("class", `list-item`);
+
+      // add completed check box
+      completedListItem.appendChild(completedCheck);
+
+      // add label
+      completedListItem.appendChild(completedLabel);
+
+    
+
+      // add completed list item to completed section
+      completedTasksList.append(completedListItem);
+    }
+  });
 
   // add logo to delete button using span
   const deleteSpan = document.createElement("span");
@@ -121,52 +149,29 @@ const completedTasks = () => {
   }
 };
 
-const moveItem = () => {
+// const moveItem = () => {
 
-  // get all list items. 
-  let taskToDelete = document.querySelector("#todoList").children;
-  //console.log(taskToDelete);
+//   // get all list items. 
+//   let taskToDelete = document.querySelector("#todoList").children;
+//   //console.log(taskToDelete);
 
-  // get completed task container
-  const completedTasksList = document.querySelector("#complete");
+//   // get completed task container
+//   const completedTasksList = document.querySelector("#complete");
 
-  for( i = 0; i < taskToDelete.length; i++){
-    //get checkbox for item clicked
-    const completedCheck = taskToDelete[i].childNodes[0];
-    //console.log(completedCheck);
-    // get delete button
-    const completeddeleteBtn = taskToDelete[i].childNodes[2];
-    //console.log(completeddeleteBtn);
-    // get checkbox
-    const completedLabel = taskToDelete[i].childNodes[1];
-    //console.log(completedLabel);
-    // get list item
-    const completedListIt = taskToDelete[i];
-    //console.log(completedListIt);
-
-    // add click event listener to delete button
-    completeddeleteBtn.addEventListener("click",(e)=>{
-      e.preventDefault();
-      // check if checkbox checked
-      if(completedCheck.checked){
-        //console.log(e)
-        console.log(completedListIt);
-        // create new list element
-        const completedHeader = document.querySelector("H2");
-        completedHeader.classList.remove('hidden');
-        const completedListItem = document.createElement("LI");
-        completedListItem.setAttribute("class", `list-item`);
-        // add completed check box
-        completedListItem.appendChild(completedCheck);
-        // add label (strikethrough not showing)
-        completedListItem.appendChild(completedLabel);
-        // add completed list item to completed section
-        completedTasksList.append(completedListItem);
-			 }
-	 	});
-  }
-};
+//   for( i = 0; i < taskToDelete.length; i++){
+//     //get checkbox for item clicked
+//     const completedCheck = taskToDelete[i].childNodes[0];
+//     //console.log(completedCheck);
+//     // get delete button
+//     const completeddeleteBtn = taskToDelete[i].childNodes[2];
+//     //console.log(completeddeleteBtn);
+//     // get checkbox
+//     const completedLabel = taskToDelete[i].childNodes[1];
+//     //console.log(completedLabel);
+//     // get list item
+//     const completedListIt = taskToDelete[i];
+//     //console.log(completedListIt);
+//   }
+// };
 
 submitButton.addEventListener("click", addItemToList);
-
-
