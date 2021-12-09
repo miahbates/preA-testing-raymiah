@@ -23,7 +23,7 @@ const addItemToList = (e) => {
   itemContainer.setAttribute("class", `list-item`);
   const itemLabel = document.createElement("LABEL");
   const checkBox = document.createElement("INPUT");
-	checkBox.setAttribute("aria-label", `check the checkbox to mark this task as completed`);
+  checkBox.setAttribute("aria-label", `check the checkbox to mark this task as completed`);
 
   // label - give label matching title of item to add
   itemLabel.setAttribute("title", itemToAdd);
@@ -32,9 +32,13 @@ const addItemToList = (e) => {
   const errorMessage = document.querySelector(".error");
   errorMessage.classList.add('hidden');
 
+  const inputSearchBar = document.querySelector("#addItem");
+  // console.log(inputSearchBar);
+
   // display message only if input input is empty string
   if (itemToAdd === '') {
     errorMessage.classList.remove('hidden');
+    inputSearchBar.setAttribute("aria-invalid", "true");
     return;
   }
 
@@ -82,10 +86,9 @@ const addItemToList = (e) => {
 
   document.getElementById("addItem").value = '';
 
+  completedTasks();
 
-	completedTasks();
-
-	moveItem();
+  moveItem();
 
 };
 
@@ -120,50 +123,49 @@ const completedTasks = () => {
 
 const moveItem = () => {
 
-	// get all list items.
-	let taskToDelete = document.querySelector("#todoList").children;
-	//console.log(taskToDelete);
+  // get all list items. 
+  let taskToDelete = document.querySelector("#todoList").children;
+  //console.log(taskToDelete);
 
-	// get completed task container
-	const completedTasksList = document.querySelector("#complete");
+  // get completed task container
+  const completedTasksList = document.querySelector("#complete");
 
-	for( i = 0; i < taskToDelete.length; i++){
-		//get checkbox for item clicked
-		const completedCheck = taskToDelete[i].childNodes[0];
-		//console.log(completedCheck);
-		// get delete button
-		const completeddeleteBtn = taskToDelete[i].childNodes[2];
-		//console.log(completeddeleteBtn);
-		// get checkbox
-		const completedLabel = taskToDelete[i].childNodes[1];
-		//console.log(completedLabel);
-		// get list item
-		const completedListIt = taskToDelete[i];
-		//console.log(completedListIt);
+  for( i = 0; i < taskToDelete.length; i++){
+    //get checkbox for item clicked
+    const completedCheck = taskToDelete[i].childNodes[0];
+    //console.log(completedCheck);
+    // get delete button
+    const completeddeleteBtn = taskToDelete[i].childNodes[2];
+    //console.log(completeddeleteBtn);
+    // get checkbox
+    const completedLabel = taskToDelete[i].childNodes[1];
+    //console.log(completedLabel);
+    // get list item
+    const completedListIt = taskToDelete[i];
+    //console.log(completedListIt);
 
-		// add click event listener to delete button
-		completeddeleteBtn.addEventListener("click",(e)=>{
-			e.preventDefault();
-			// check if checkbox checked
-			if(completedCheck.checked){
-				//console.log(e)
-				console.log(completedListIt);
-				// create new list element
+    // add click event listener to delete button
+    console.log('Creating delete handler for', completeddeleteBtn);
+    completeddeleteBtn.addEventListener("click",(e)=>{
+      e.preventDefault();
+      // check if checkbox checked
+      if(completedCheck.checked){
+        //console.log(e)
+        console.log(completedListIt);
+        // create new list element
         const completedHeader = document.querySelector("H2");
         completedHeader.classList.remove('hidden');
-				const completedListItem = document.createElement("LI");
-				completedListItem.setAttribute("class", `list-item`);
-				// add completed check box
-				completedListItem.appendChild(completedCheck);
-				// add label (strikethrough not showing)
-				completedListItem.appendChild(completedLabel);
-				// add completed list item to completed section
-				completedTasksList.append(completedListItem);
-			}
-		});
-	}
+        const completedListItem = document.createElement("LI");
+        completedListItem.setAttribute("class", `list-item`);
+        // add completed check box
+        completedListItem.appendChild(completedCheck);
+        // add label (strikethrough not showing)
+        completedListItem.appendChild(completedLabel);
+        // add completed list item to completed section
+        completedTasksList.append(completedListItem);
+			 }
+	 	});
+  }
 };
 
 submitButton.addEventListener("click", addItemToList);
-
-
