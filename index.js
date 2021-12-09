@@ -32,9 +32,13 @@ const addItemToList = (e) => {
   const errorMessage = document.querySelector(".error");
   errorMessage.classList.add('hidden');
 
+  const inputSearchBar = document.querySelector("#addItem");
+  // console.log(inputSearchBar);
+
   // display message only if input input is empty string
   if (itemToAdd === '') {
     errorMessage.classList.remove('hidden');
+    inputSearchBar.setAttribute("aria-invalid", "true");
     return;
   }
 
