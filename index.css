@@ -48,6 +48,7 @@ h2 {
 	margin: 20px auto;
 	font-size: 3rem;
 }
+
 form {
 	display: flex;
 	align-items: center;
@@ -108,7 +109,10 @@ form input[type="text"] {
 
 .completed label {
 	text-decoration: line-through;
+}
 
+#complete > li {
+	text-decoration: line-through;
 }
 
 .fa-plus:hover {
