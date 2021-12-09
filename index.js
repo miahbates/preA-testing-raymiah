@@ -145,6 +145,7 @@ const moveItem = () => {
     //console.log(completedListIt);
 
     // add click event listener to delete button
+    console.log('Creating delete handler for', completeddeleteBtn);
     completeddeleteBtn.addEventListener("click",(e)=>{
       e.preventDefault();
       // check if checkbox checked
@@ -168,5 +169,3 @@ const moveItem = () => {
 };
 
 submitButton.addEventListener("click", addItemToList);
-
-
