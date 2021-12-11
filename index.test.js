@@ -21,7 +21,7 @@ test("input text added to list container as list item", () => {
 
  		// get any text submitted to label.
  		let listItemContent = children[i].querySelector('label').textContent;
-		 console.log('fghjk', children[i]);
+		 //console.log('fghjk', children[i]);
 
  		// test whether LI element has been created
 			 equal(listItem, true, "LI element created"); // step 4
