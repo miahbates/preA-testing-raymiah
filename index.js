@@ -134,7 +134,7 @@ const moveItem = () => {
 	});
 
 	// conditional to prevent uncaught reference error as completedListIt not created yet.
-	if(completedListIt.length ){
+	if(completedListIt.length > 0){
 
 	// get checkbox
 	const completedCheck = completedListIt[0].childNodes[0];
