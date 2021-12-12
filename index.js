@@ -23,7 +23,7 @@ const addItemToList = (e) => {
   itemContainer.setAttribute("class", `list-item`);
   const itemLabel = document.createElement("LABEL");
   const checkBox = document.createElement("INPUT");
-	checkBox.setAttribute("aria-label", `check the checkbox to mark this task as completed`);
+  checkBox.setAttribute("aria-label", `check the checkbox to mark this task as completed`);
 
   // label - give label matching title of item to add
   itemLabel.setAttribute("title", itemToAdd);
@@ -32,9 +32,13 @@ const addItemToList = (e) => {
   const errorMessage = document.querySelector(".error");
   errorMessage.classList.add('hidden');
 
+  const inputSearchBar = document.querySelector("#addItem");
+  // console.log(inputSearchBar);
+
   // display message only if input input is empty string
   if (itemToAdd === '') {
     errorMessage.classList.remove('hidden');
+    inputSearchBar.setAttribute("aria-invalid", "true");
     return;
   }
 
@@ -82,8 +86,6 @@ const addItemToList = (e) => {
   document.getElementById("addItem").value = '';
 
 	completedTasks();
-
-
 
 };
 
@@ -152,16 +154,12 @@ const moveItem = () => {
 	completedListItem.appendChild(completedLabel);
 	// add completed list item to completed section
 	completedTasksList.append(completedListItem);
-}else{
+  }else{
 
-	return console.error("completed item not created yet");
+    return console.error("completed item not created yet");
 
-}
+  }
 
 };
 
-
-
 submitButton.addEventListener("click", addItemToList);
-
-

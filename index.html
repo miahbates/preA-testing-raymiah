@@ -26,14 +26,14 @@
       <section id="wrapper">
 				<h1>To-do-List</h1>
         <form action="">
-          <input id="addItem" name="additem" type="text" placeholder="Add a new task..."/>
+          <input id="addItem" name="additem" type="text" aria-invalid="false" aria-describedby="error" placeholder="Add a new task..."/>
           <button id="submit" type="submit" aria-label="add task"><span class="fas fa-plus"></span></button>
         </form>
-        <p class="error hidden" aria-describedby="error">Please enter a valid input</p>
+        <p class="error hidden" id="error">Please enter a valid input</p>
         <ul id="todoList">
         </ul>
 				<br/>
-				<h2 class="hidden" id="error">Completed Items</h2>
+				<h2 class="hidden" >Completed Items</h2>
 				<ul id="complete">
         </ul>
       </section>
