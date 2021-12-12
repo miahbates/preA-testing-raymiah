@@ -4,7 +4,7 @@ const todoList = document.getElementById("todoList");
 let idx = 0;
 
 const addItemToList = (e) => {
-  console.log(e);
+  //console.log(e);
   e.preventDefault();
 
   // get input value
@@ -15,7 +15,7 @@ const addItemToList = (e) => {
   if(window.localStorage) {
     localStorage.setItem("list-Item", itemToAdd);
 	  const cat = localStorage.getItem("list-Item");
-	  console.log(cat);
+	  //console.log(cat);
   }
 
   // create li, label and checkbox
@@ -53,21 +53,6 @@ const addItemToList = (e) => {
   deleteSpan.classList.add("far", "fa-trash-alt");
   deleteButton.appendChild(deleteSpan);
 
-  // see if checkbox is checked
-  checkBox.addEventListener("change", event => {
-	 if (checkBox.checked) {
-		 itemContainer.classList.add('completed');
-	 } else if (!checkBox.checked) {
-      itemContainer.classList.remove('completed');
-	 }
-  });
-
-  // click delete button to remove item container
-  deleteButton.addEventListener("click", event => {
-	  itemContainer.remove();
-
-  });
-
   // label
   itemLabel.setAttribute("for", `listitem-${idx}`);
   itemLabel.innerHTML = itemToAdd;
@@ -81,14 +66,26 @@ const addItemToList = (e) => {
   checkBox.setAttribute("id", `listitem-${idx}`);
   checkBox.setAttribute("class", "list_item");
 
-  idx++;
-  completedTasks();
+	// see if checkbox is checked
+  checkBox.addEventListener("change", event => {
+		if (checkBox.checked) {
+			itemContainer.classList.add('completed');
+		} else if (!checkBox.checked) {
+			 itemContainer.classList.remove('completed');
+		}
+	 });
 
+	 // click delete button to remove item container
+  deleteButton.addEventListener("click", event => {
+		//move item to completed section
+		moveItem();
+	  itemContainer.remove();
+  });
+
+  idx++;
   document.getElementById("addItem").value = '';
 
-  completedTasks();
-
-  moveItem();
+	completedTasks();
 
 };
 
@@ -112,60 +109,57 @@ const completedTasks = () => {
     });
 
     completeCheckBox.addEventListener("change", (e) => {
-      if (completeCheckBox.checked == true) {
+      if (completeCheckBox.checked) {
         console.log("item checked as completed");
       } else {
         console.log("item not checked as completed");
       }
     });
   }
+
 };
 
 const moveItem = () => {
 
-  // get all list items. 
-  let taskToDelete = document.querySelector("#todoList").children;
-  //console.log(taskToDelete);
+	// get all list items.
+	let taskToDelete = document.querySelector("#todoList").children;
 
-  // get completed task container
-  const completedTasksList = document.querySelector("#complete");
+	// get completed task container
+	const completedTasksList = document.querySelector("#complete");
 
-  for( i = 0; i < taskToDelete.length; i++){
-    //get checkbox for item clicked
-    const completedCheck = taskToDelete[i].childNodes[0];
-    //console.log(completedCheck);
-    // get delete button
-    const completeddeleteBtn = taskToDelete[i].childNodes[2];
-    //console.log(completeddeleteBtn);
-    // get checkbox
-    const completedLabel = taskToDelete[i].childNodes[1];
-    //console.log(completedLabel);
-    // get list item
-    const completedListIt = taskToDelete[i];
-    //console.log(completedListIt);
+	// filter out list item with check box checked and return item
+	const completedListIt = Array.from(taskToDelete).filter(element => {
 
-    // add click event listener to delete button
-    console.log('Creating delete handler for', completeddeleteBtn);
-    completeddeleteBtn.addEventListener("click",(e)=>{
-      e.preventDefault();
-      // check if checkbox checked
-      if(completedCheck.checked){
-        //console.log(e)
-        console.log(completedListIt);
-        // create new list element
-        const completedHeader = document.querySelector("H2");
-        completedHeader.classList.remove('hidden');
-        const completedListItem = document.createElement("LI");
-        completedListItem.setAttribute("class", `list-item`);
-        // add completed check box
-        completedListItem.appendChild(completedCheck);
-        // add label (strikethrough not showing)
-        completedListItem.appendChild(completedLabel);
-        // add completed list item to completed section
-        completedTasksList.append(completedListItem);
-			 }
-	 	});
+		return element.childNodes[0].checked ? element : false;
+
+	});
+
+	// conditional to prevent uncaught reference error as completedListIt not created yet.
+	if(completedListIt.length > 0){
+
+	// get checkbox
+	const completedCheck = completedListIt[0].childNodes[0];
+
+	// get label
+	const completedLabel = completedListIt[0].childNodes[1];
+
+	// create new list element
+	const completedHeader = document.querySelector("H2");
+	completedHeader.classList.remove('hidden');
+	const completedListItem = document.createElement("LI");
+	completedListItem.setAttribute("class", `list-item`);
+	// // add completed check box
+	completedListItem.appendChild(completedCheck);
+	// // add label (strikethrough not showing)
+	completedListItem.appendChild(completedLabel);
+	// add completed list item to completed section
+	completedTasksList.append(completedListItem);
+  }else{
+
+    return console.error("completed item not created yet");
+
   }
+
 };
 
 submitButton.addEventListener("click", addItemToList);
