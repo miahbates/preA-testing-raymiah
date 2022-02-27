@@ -1,21 +1,44 @@
-# Ray and Miah - To-do-list ✨
+# [Founders and Coders](https://www.foundersandcoders.com/) (pre-apprenticeship) 
 
-## User Stories:
-*As a busy person, I want to:*
-- [ ] Add tasks to a list so that I can keep track of them - Ray
-- [ ] Check things off my list so that I can see what I’ve done - Miah
-- [ ] Delete things from the list if I don’t need to do them anymore - Miah
+## To-do-list 📔
 
-*As a motor-impaired user, I want to:*
-- [ ] Use all the features of the app without a mouse - Ray
+*Co-authored with [Ray](https://github.com/raythompsonwebdev)*
 
-## Layout/Design:
-- [ ] CSS/Design - Miah/Ray 
-- [ ] Accessibility focus - Ray
-- [ ] Responsive - Miah
+A to-do list tracker that allow users to create, complete and delete tasks from a list. Includes automated tests covering all the main user stories
 
-## Testing 
-- [ ] test if tasks are added correctly - Ray 
-- [ ] test if tasks can be checked off list to see what has been done - Miah
-- [ ] test if tasks can be deleted - Miah
+*Check out the [live site here]()!*
+
+## User Stories: 👥
+### As a busy person, I want to:
+- [x] Add tasks to a list so that I can keep track of them.
+- [x] Check things off my list so that I can see what I’ve done.
+- [x] Delete things from the list if I don’t need to do them anymore.
+### As a motor-impaired user, I want to:
+- [x] Use all the features of the app without a mouse.
+
+## Features: 🌟
+* Add, delete functionality implemented.
+* Deleted items move to deleted section.
+* Invalid inputs flagged to the user.
+
+
+## Learning: 🌱
+* We can test the functionality of our app.
+* We can check that passing a given input into our tests returns the expected output.
+* We can write tests to mimic the behaviour of a user performing different actions.
+* We can write testable, modular functions.
+* We can write functions that add, remove or modify DOM nodes.
+* We can apply event listeners to HTML form elements.
+* We can use scope to control what variables are accessible inside functions and blocks.
+
+
+## Improvements and future ideas: ✨
+- Edit notes. 
+- Use local storage to save user information.
+
+
+
+
+
+
 
