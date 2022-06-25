@@ -8,6 +8,8 @@ A to-do list tracker that allow users to create, complete and delete tasks from 
 
 *Check out the [live site here]()!*
 
+<img width="1410" alt="Screenshot 2022-06-25 at 21 15 05" src="https://user-images.githubusercontent.com/78933903/175789269-d394dae0-4a77-4a1b-9e4c-aba4b0e2862d.png">
+
 ## User Stories: 👥
 ### As a busy person, I want to:
 - [x] Add tasks to a list so that I can keep track of them.
